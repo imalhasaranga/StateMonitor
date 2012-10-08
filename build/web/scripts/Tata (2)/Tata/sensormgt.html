@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>TATA</title>
+
+<link href="styles/main2.css" rel="stylesheet" type="text/css"/>
+<link href="styles/sensortype.css" rel="stylesheet" type="text/css"/>
+<link href="styles/message.css" rel="stylesheet" type="text/css"/>
+
+</head>
+
+<body>
+
+	<div id="top" align="center">
+    	<div id="top1" align="left">
+    		Dash Board of Managemet Room
+            <span id="userdetails">Current User: damith</span>
+            <a href="#"><span id="logout">Logout</span></a>
+    	</div>
+        
+        <div id="topbrd">
+        	<div id="top2">
+            	<a href="dashboard.html"><div class="mainlinks">Dash Board</div></a>
+    			<a href="reportsensor.html"><div class="mainlinks">Sensor Reports</div></a>
+                <a href="sensortype.html"><div class="mainlinks">Sensor Types</div></a>
+            	<a href="sensormgt.html"><div class="mainlinks">Sensor Management</div></a>
+                <a href="inspectormgt.html"><div class="mainlinks">Inspector Management</div></a>
+            	<a href="usermgt.html"><div class="mainlinks">User Management</div></a>
+            	
+    		</div>
+        </div>
+        
+    
+    </div>
+
+	<div id="container" align="center">
+   
+    	<div id="content" align="left">
+        	
+            <div id="title">Sensor Management...</div>
+            
+           	<form action="sensormgt.html">
+			<table id="tbl_login">
+  <tr>
+    <td>Sensor Serial</td>
+    <td><input type="text" name="serial" id="txt_username"  class="userenter"/></td>
+  </tr>
+  <tr>
+    <td>Sensor Type</td>
+    <td>
+    <select name="stype" id="txt_username"  class="userselect"/>
+      <option>Temparature</option>
+      <option>Humidity</option>
+      <option>Water Leak</option>
+      <option>Fire Alarm</option>
+    </select>
+    </td>
+  </tr>
+  <tr>
+    <td>Sensor Name</td>
+    <td><input type="text" name="sname" id="password"  class="userenter"/></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><input type="submit" name="login" value="Add Sensor" id="btn_login"  class="btn"/></td>
+  </tr>
+</table>
+		</form>
+        
+        <div id="tbl2">
+            	<table id="tblsensors2" cellpadding="0" cellspacing="0">
+  <tr>
+    <th>S.Id</th>
+    <th>S.Serial</th>
+    <th>S.Type</th>
+    <th>Sensor Name</th>
+    <th>Isactive</th>
+  </tr>
+  <tr>
+    <td width="30">1</td>
+    <td width="70">ABC33444R</td>
+    <td width="80">Temparature</td>
+    <td width="330">Mother Board Top Sensor</td>
+    <td width="100" align="center"><a href="javascript:void(0)" id="viewchart2" onclick = "document.getElementById('light1').style.display='block';document.getElementById('fade').style.display='block'"><span id="viewchart">Active</span></a></td>
+  </tr>
+  <tr>
+   	<td width="30">1</td>
+    <td width="70">ABC33444R</td>
+    <td width="80">Temparature</td>
+    <td width="330">Mother Board Top Sensor</td>
+    <td width="100" align="center"><a href="javascript:void(0)" id="viewchart2" onclick = "document.getElementById('light1').style.display='block';document.getElementById('fade').style.display='block'"><span id="viewchart">Active</span></a></td>
+  </tr>
+  <tr>
+    <td width="30">1</td>
+    <td width="70">ABC33444R</td>
+    <td width="80">Temparature</td>
+    <td width="330">Mother Board Top Sensor</td>
+    <td width="100" align="center"><a href="javascript:void(0)" id="viewchart2" onclick = "document.getElementById('light1').style.display='block';document.getElementById('fade').style.display='block'"><span id="viewchart">Active</span></a></td>
+  </tr>
+  <tr>
+    <td width="30">1</td>
+    <td width="70">ABC33444R</td>
+    <td width="80">Temparature</td>
+    <td width="330">Mother Board Top Sensor</td>
+    <td width="100" align="center"><a href="javascript:void(0)" id="viewchart2" onclick = "document.getElementById('light1').style.display='block';document.getElementById('fade').style.display='block'"><span id="viewchart">Active</span></a></td>
+  </tr>
+</table>
+
+			<div id="light1" class="white_box" align="center">		
+				<p>Sure to Deactivate this Sensor Type?</p>
+                <input type="submit" name="yes" value="Yes" id="btn_login"  class="btn"/>
+                <input type="submit" name="no" value="No" id="btn_login"  class="btn"/>
+			</div>
+            
+            <a onclick="document.getElementById('light2').style.display='none';document.getElementById('fade').style.display='none'" href="javascript:void(0)">
+			<div id="fade" class="black_overlay1" onclick = "document.getElementById('light1').style.display='none';document.getElementById('fade').style.display='none'">
+			</div>
+		</a>
+            
+            
+            </div>
+           
+
+        
+        </div>
+    	
+    
+    
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,140 @@
+@charset "utf-8";
+/* CSS Document */
+
+#loginholder{
+	width:300px;
+	height:200px;
+	background: #c2dbfc;
+	border:1px #0099FF solid;
+	margin-top:150px;
+}
+#loginholder_top{
+	width:300px;
+	height:30px;
+	background:#6fadfd;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:10px;
+	font-weight:bold;
+	color:#FFFFFF;
+}
+#loginholder_bottom{
+	width:300px;
+	height:30px;
+	background:#6fadfd;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:10px;
+	font-weight:bold;
+	color:#FFFFFF;
+}
+#tbl_login{
+	width:300px;
+	height:auto;
+	margin-top:10px;
+	margin-bottom:10px;
+	line-height:20px;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:10px;
+	font-weight:bold;
+	color:#0066FF;
+	line-height:30px;
+}
+.userenter{
+	width:125px;
+	height:20px;
+	background:#FFFFFF;
+	font-family:Times New Roman, Times, serif;
+	font-size:15px;
+	font-weight:bold;
+	color:#333333;
+}
+.userselect{
+	width:128px;
+	height:25px;
+	background:#FFFFFF;
+	border:1px solid #666666;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:11px;
+	font-weight:bold;
+	color:#333333;
+}
+.btn{
+	width:125px;
+	height:30px;
+	background:#999999;
+	border:1px solid #333333;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:11px;
+	font-weight:bold;
+	color:#FFFFFF;
+}
+.btn:hover{
+	width:125px;
+	height:30px;
+	background:#FFFFFF;
+	border:1px solid #333333;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:11px;
+	font-weight:bold;
+	color:#6fadfd;
+}
+#tbl{
+	width:510px;
+	height:auto;
+	float:left;
+}
+#tblsensors{
+	width:500px;
+	height:auto;
+	margin-top:10px;
+	padding:5px;
+	line-height:30px;
+	background:#FFFFFF;
+	border-radius: 10px;
+	border:1px dotted #CCCCCC;
+}
+#tbl2{
+	width:650px;
+	height:auto;
+	float:left;
+}
+#tblsensors2{
+	width:600px;
+	height:auto;
+	margin-top:10px;
+	padding:5px;
+	line-height:30px;
+	background:#FFFFFF;
+	border-radius: 10px;
+	border:1px dotted #CCCCCC;
+}
+#tblsensors th, #tblsensors2 th{
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:11px;
+	font-weight:bold;
+	color:#333333;
+	background:#CCCCCC;
+	padding-left:10px;
+}
+#tblsensors td, #tblsensors2 td{
+	border-bottom:1px solid #94c2fd;
+	padding-left:5px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#0033FF;
+}
+#tblsensors tr:hover{
+	border-bottom:1px dotted #999999;
+	padding-left:5px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#333333;
+	background:#CCCCCC;
+}
+#tblsensors2 tr:hover{
+	border-bottom:1px dotted #999999;
+	padding-left:5px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#333333;
+	background:#CCCCCC;
+}

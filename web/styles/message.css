@@ -1,0 +1,35 @@
+@CHARSET "ISO-8859-1";
+
+/* This is a style of dim effect onClick on Register or Log in button - it's the transparent background*/
+.black_overlay1, .black_overlay2{
+	display: none;
+	position: fixed;
+	top: 0%;
+	left: 0%;
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	z-index:1001;
+	-moz-opacity: 0.8;
+	opacity:.80;
+	filter: alpha(opacity=80);
+}
+ 
+/* This is a style for log in and registration form */
+.white_box  {
+   	display: none;
+   	position: absolute;
+   	top: 35%;
+   	left: 50%;
+   	width: 300px;
+   	height: 100px;
+   	padding: 16px;
+   	border: 5px solid #FFFFFF;
+   	background-color: #CCCCCC;
+   	z-index:1002;
+   	overflow: auto;
+   	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:11px;
+	font-weight:bold;
+	color:#0066FF;
+}
