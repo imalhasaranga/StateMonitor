@@ -1,4 +1,3 @@
-
 <%@page import="java.util.Iterator"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="includes/topheader.jsp" %>
@@ -10,7 +9,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>TATA</title>
-        <link href="styles/dashboard.css" rel="stylesheet" type="text/css"/>
+
+        <link href="styles/dashboard2.css" rel="stylesheet" type="text/css"/>
         <script src="scripts/jquery-1.8.2.min.js" ></script>
         <script type="text/javascript">
             var idss = new Array();
@@ -29,8 +29,8 @@
                             
                             divel.style.backgroundColor ="#d1fc86";
                             divel.style.color = "#666666";
-                            divel.innerHTML = "All Sensors Work Fine";
-                            aeli.href = "#";
+                            divel.innerHTML = "";
+                            aeli.href = "sensormore.jsp?sentyid="+idss[i];
                             
                         }
                        
@@ -39,11 +39,11 @@
                         for(var i = 0; i < obj.length; i++){
                             flag = 1;
                             var divel =  document.getElementById("d"+obj[i].SenTypeID);
-                            var link =  document.getElementById("a"+obj[i].SenTypeID); 
+                            //var link =  document.getElementById("a"+obj[i].SenTypeID); 
                            
                             divel.style.backgroundColor ="#C30";
                             divel.style.color = "white";                            
-                            link.href = "sensorproblem.html";
+                           // link.href = "sensorproblem.html";
                             if(prob != ""){
                                 divel.innerHTML = "";
                                 divel.innerHTML = prob+divel.innerHTML+obj[i].SenName;
@@ -63,9 +63,6 @@
                     }});
                 
             }
-            
-           
-                
            
         </script>
     </head>
@@ -77,6 +74,7 @@
         <div id="container" align="center">
 
             <div id="content" align="left">
+
                 <%
                     Sensor_type sentype = new Sensor_type();
                     Sensor sen1 = new Sensor();
@@ -87,28 +85,37 @@
                 %>
 
                 <div id="sensor">
-                    <div class="sensor_left">
-                        <div class="sensor_left">
-                            <a href="sensormore.jsp?sentyid=<%=sentype.getSensor_type_id()%>"><div class="sensor_name" align="center"><%=sentype.getSensor_type()%></div></a>
-                            <div class="sensor_nums" align="center">
-                                No of Sensors: <%=sen1.SensorCount(sentype.getSensor_type_id())%>
-                            </div>
-                        </div>
+                    <div id="sensor_heading"  align="center">
+                        <%=sentype.getSensor_type()%>
                     </div>
-                    <a href="#" id="a<%=sentype.getSensor_type_id()%>"><div  class="sensor_right" align="center" id="d<%=sentype.getSensor_type_id()%>" >All Sensors Work Fine</div></a>
+                    <a href="sensormore.jsp?sentyid=<%=sentype.getSensor_type_id()%>" id="a<%=sentype.getSensor_type_id()%>" style="font-family: Verdana; font-size: 9px; font-weight:bold" target="_blank">
+                        <div id="d<%=sentype.getSensor_type_id()%>" class="sensor_middle"  align="center"  style="padding-top: 10px"></div></a>
+                    <div id="sensor_bottom" align="center">
+                        All Sensors: <%=sen1.SensorCount(sentype.getSensor_type_id())%>
+
+                    </div>
                 </div>
-                <br/>
-                <script type="text/javascript">
-                    
+                <script type="text/javascript">               
                     idss[<%=(cou1++)%>] = '<%=sentype.getSensor_type_id()%>';  
                 </script>
-                <%  }
-
+                <%
+                    }
                 %>
+
+
+
+
+
+
+
+
 
             </div>
 
+
+
+
         </div>
-        <audio src="files/al1.wav" id="mp3" loop="loop" preload="auto"></audio>
+        <audio src="files/al1.wav" id="mp3" loop="loop" preload="auto" ></audio>
     </body>
 </html>

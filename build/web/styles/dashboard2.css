@@ -1,0 +1,250 @@
+@charset "utf-8";
+/* CSS Document */
+body{
+	margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+	margin-bottom: 0px;
+	height:100%;
+	background:url(backimg.png);
+}
+#top{
+	width:auto;
+	height:60px;
+	min-width:1000px;
+	background:url(topimg2.png);
+}
+#top1{
+	padding:10px;
+	padding-left:100px;
+	width:800px;
+	height:20px;
+	min-width:1000px;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:14px;
+	font-weight:bold;
+	color:#FFFFFF;
+}
+#userdetails{
+	margin-left:100px;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:10px;
+	font-weight:bold;
+	color:#f3f0f0;
+}
+#logout{
+	margin-left:200px;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:10px;
+	font-weight:bold;
+	color:#f3f0f0;
+}
+#logout:hover{
+	margin-left:200px;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:10px;
+	font-weight:bold;
+	color:#FFFFFF;
+}
+#topbrd{
+	width:auto;
+	height:20px;
+	min-width:1000px;
+	background:#b5b4b4;
+	border-top:1px solid #000000;
+}
+#top2{
+	width:1000px;
+	height:20px;
+	min-width:1000px;
+	background:#b5b4b4;
+}
+#container{
+	width:auto;
+	height:auto;
+	min-width:1000px;
+}
+#content{
+	width:1000px;
+	max-width:1000px;
+	min-width:1000px;
+	height:auto;
+	background:#CCCCCC;
+}
+#sensor{
+	width:205px;
+	height:185px;
+	float:left;
+	background:#484747;
+	border-radius: 10px;
+	margin-left:35px;
+	margin-top:20px;
+	border: 1px solid #666666;
+}
+#sensor_heading{
+	width:205px;
+	height:22px;
+	padding-top:5px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	font-weight:bold;
+	color:#f3f0f0;
+}
+.sensor_middle{
+	width:205px;
+	height:120px;
+	background:#d1fc86;
+}
+.sensor_middle:hover{
+	width:203px;
+	height:128px;
+	background:#d1fc86;
+	border:1px solid #006600;
+}
+#sensor_middle_pro{
+	width:205px;
+	height:130px;
+	background:#fc6488;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:9px;
+	font-weight:bold;
+	color:#f3f0f0;
+	
+}
+#sensor_middle_pro:hover{
+	width:201px;
+	height:126px;
+	background:#fc6488;
+	border:2px solid #FF0000;
+}
+#sensor_bottom{
+	width:205px;
+	height:22px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	font-weight:bold;
+	color:#f3f0f0;
+	padding-top:5px;
+}
+.sensor_left{
+	width:100px;
+	height:70px;
+	background:#CCCCCC;
+	float:left;
+}
+.sensor_right{
+	width:400px;
+	height:40px;
+	padding-top:30px;
+	background:#d1fc86;
+	float:left;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	font-weight:bold;
+	color:#666666;
+}
+.sensor_right_pro{
+	width:400px;
+	height:40px;
+	padding-top:30px;
+	background:#fc6488;
+	float:left;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	font-weight:bold;
+	color:#FFFFFF;
+}
+.sensor_name{
+	width:100px;
+	height:25px;
+	padding-top:10px;
+	background:#484747;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	font-weight:bold;
+	color:#f3f0f0;
+}
+.sensor_name:hover{
+	width:100px;
+	height:25px;
+	padding-top:10px;
+	background:#f3f0f0;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	font-weight:bold;
+	color:#484747;
+	text-decoration:none;
+}
+.sensor_nums{
+	width:100px;
+	height:25px;
+	padding-top:10px;
+	background:#FFFFFF;
+	font-family:"Times New Roman", Times, serif;
+	font-size:12px;
+	font-weight:bold;
+	color:#666666;
+}
+.sensor_right:hover{
+	width:398px;
+	height:38px;
+	padding-top:30px;
+	background:#d1fc86;
+	float:left;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	font-weight:bold;
+	color:#FFFFFF;
+	border: 1px solid #000000;
+}
+.sensor_right_pro:hover{
+	width:396px;
+	height:36px;
+	padding-top:30px;
+	background:#fc6488;
+	float:left;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	font-weight:bold;
+	color:#333333;
+	border: 2px solid #FF0000;
+}
+/* Link Styles */
+
+.mainlinks{
+	width:150px;
+	height:20px;
+	float:left;
+	font-family:"Times New Roman", Times, serif;
+	font-size:14px;
+	font-weight:bold;
+	color:#484747;
+}
+
+.mainlinks:hover{
+	width:150px;
+	height:20px;
+	float:left;
+	background:#484747;
+	color:#FFFFFF;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -18,6 +18,7 @@ public class TotalSensorReadings {
     private String reading;
     private String reading_datime;
     private String color;
+    private boolean normal;
 
     public ArrayList<TotalSensorReadings> getLatestReadings(int Sentypeid) {
         ArrayList<TotalSensorReadings> redng = new ArrayList<TotalSensorReadings>();
@@ -43,8 +44,10 @@ public class TotalSensorReadings {
                 toread.setReading_datime(readings.getString("reading_time"));
                 if((Integer.parseInt(toread.getSen_max()) > Integer.parseInt(toread.getReading())) && (Integer.parseInt(toread.getReading()) > Integer.parseInt(toread.getSen_min()))){
                 toread.setColor("green");
+                toread.setNormal(true);
                 }else{
                 toread.setColor("red");
+                toread.setNormal(false);
                 }
                 
                 redng.add(toread);
@@ -79,6 +82,44 @@ public class TotalSensorReadings {
                 toread.setReading(readings.getString("reading"));
                 toread.setReading_datime(readings.getString("reading_time"));
                 
+                
+                redng.add(toread);
+            }
+
+        } catch (Exception e) {
+        }
+        return redng;
+    }
+    
+    public ArrayList<TotalSensorReadings> getLatestReadings() {
+        ArrayList<TotalSensorReadings> redng = new ArrayList<TotalSensorReadings>();
+        try {
+
+            ResultSet rs = DB.getData("SELECT MAX(reading_time) AS mtime FROM reading");
+            rs.first();
+            String maxtime = rs.getString("mtime").substring(0, 16);
+
+            ResultSet readings = DB.getData("SELECT* FROM allsenreding WHERE SUBSTRING(reading_time,1, 16)  = '" + maxtime + "'  ");
+            while (readings.next()) {
+                TotalSensorReadings toread = new TotalSensorReadings();
+                toread.setSensor_id(readings.getInt("sensor_id"));
+                toread.setSen_type_id(readings.getInt("sensor_type_id"));
+                toread.setSen_type_name(readings.getString("sensor_type_name"));
+                toread.setFamily_code(readings.getString("family_code"));
+                toread.setSen_serial(readings.getString("sensor_serial"));
+                toread.setSen_description(readings.getString("description"));
+                toread.setSen_min(readings.getString("minimum"));
+                toread.setSen_max(readings.getString("maximum"));
+                toread.setReading_id(readings.getInt("reading_id"));
+                toread.setReading(readings.getString("reading"));
+                toread.setReading_datime(readings.getString("reading_time"));
+                if((Integer.parseInt(toread.getSen_max()) > Integer.parseInt(toread.getReading())) && (Integer.parseInt(toread.getReading()) > Integer.parseInt(toread.getSen_min()))){
+                toread.setColor("green");
+                toread.setNormal(true);
+                }else{
+                toread.setColor("red");
+                toread.setNormal(false);
+                }
                 
                 redng.add(toread);
             }
@@ -254,5 +295,19 @@ public class TotalSensorReadings {
      */
     public void setColor(String color) {
         this.color = color;
+    }
+
+    /**
+     * @return the normal
+     */
+    public boolean isNormal() {
+        return normal;
+    }
+
+    /**
+     * @param normal the normal to set
+     */
+    public void setNormal(boolean normal) {
+        this.normal = normal;
     }
 }

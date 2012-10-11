@@ -36,7 +36,7 @@ public class Sensor_type {
                 break;
         }
         try {
-            ResultSet rs = DB.getData("SELECT sensor_type_id, sensor_type, family_code,is_active FROM sensor_type " + conditn);
+            ResultSet rs = DB.getData("SELECT sensor_type_id, sensor_type, family_code,is_active FROM sensor_type " + conditn+" order by is_active desc");
             while (rs.next()) {
                 Sensor_type sensortype = new Sensor_type();
                 sensortype.setSensor_family_code(rs.getString("family_code"));
@@ -59,7 +59,7 @@ public class Sensor_type {
     public Sensor_type getSensorTypes(int sensor_type_id) {
         Sensor_type sensortype = null;
         try {
-            ResultSet rs = DB.getData("SELECT sensor_type_id, sensor_type, family_code,is_active FROM sensor_type where sensor_type_id = '" + sensor_type_id + "'");
+            ResultSet rs = DB.getData("SELECT sensor_type_id, sensor_type, family_code,is_active FROM sensor_type where sensor_type_id = '" + sensor_type_id + "' order by is_active desc");
             sensortype = new Sensor_type();
             if (rs.next()) {
                 sensortype.setSensor_family_code(rs.getString("family_code"));

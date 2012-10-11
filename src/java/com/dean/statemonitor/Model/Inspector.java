@@ -1,8 +1,14 @@
 package com.dean.statemonitor.Model;
 
 import com.dean.statemonitor.Properties.DB;
+import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -37,8 +43,8 @@ public class Inspector {
                 inspec.setPost(inspectors.getString("post"));
                 inspec.setEmail(inspectors.getString("email"));
                 inspec.setPhone(inspectors.getString("phone"));
-                inspec.setActives(inspectors.getInt("is_active")==1?"Active":"InActive");
-                
+                inspec.setActives(inspectors.getInt("is_active") == 1 ? "Active" : "InActive");
+
                 inspect.add(inspec);
             }
 
@@ -48,8 +54,7 @@ public class Inspector {
 
         return inspect;
     }
-    
-    
+
     public Inspector getInspector() {
 
         Inspector inspec = new Inspector();
@@ -61,16 +66,16 @@ public class Inspector {
                     + "phone,is_active "
                     + "FROM "
                     + "inspectors  "
-                    + " where inspectorID='"+getInspectorID()+"'");       
-                if(inspectors.next()){
+                    + " where inspectorID='" + getInspectorID() + "'");
+            if (inspectors.next()) {
                 inspec.setInspectorID(inspectors.getInt("inspectorID"));
                 inspec.setInspectorName(inspectors.getString("inspectorName"));
                 inspec.setPost(inspectors.getString("post"));
                 inspec.setEmail(inspectors.getString("email"));
                 inspec.setPhone(inspectors.getString("phone"));
-                inspec.setActives(inspectors.getInt("is_active")==1?"Active":"InActive");
-                }
-              
+                inspec.setActives(inspectors.getInt("is_active") == 1 ? "Active" : "InActive");
+            }
+
 
         } catch (Exception e) {
             System.out.println(e);
@@ -80,21 +85,48 @@ public class Inspector {
     }
 
     public void AddInspector() {
-
+        Connection con = null;
         try {
-            DB.setData("INSERT INTO inspectors "
+
+            con = DB.getCon();
+            con.setAutoCommit(false);
+            Statement st = con.createStatement();
+            st.executeUpdate("INSERT INTO inspectors "
                     + "(inspectorName,  "
                     + "post,  "
                     + "email,  "
                     + "phone "
                     + ") "
                     + "VALUES "
-                    + "('"+getInspectorName()+"',  "
-                    + "'"+getPost()+"',  "
-                    + "'"+getEmail()+"',  "
-                    + "'"+getPhone()+"' "
-                    + ")");
+                    + "('" + getInspectorName() + "',  "
+                    + "'" + getPost() + "',  "
+                    + "'" + getEmail() + "',  "
+                    + "'" + getPhone() + "' "
+                    + ")", Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs = st.getGeneratedKeys();
+            rs.first();
+            int id0 = rs.getInt(1);
+
+            Sensor sen = new Sensor();
+            sensors_inspectors senins = new sensors_inspectors();
+            Iterator i = sen.getAllSensors().iterator();
+            while (i.hasNext()) {
+                sen = (Sensor) i.next();
+                if (sen.getActiveState().equals("Active")) {
+                    senins.setInspectorID(id0);
+                    senins.setSensorID(sen.getSensor_id());
+                    senins.addSensor_inspector();
+                }
+            }
+            
+            con.commit();
+            con.setAutoCommit(true);
         } catch (Exception e) {
+            try {
+                con.rollback();
+            } catch (SQLException ex) {
+                Logger.getLogger(Inspector.class.getName()).log(Level.SEVERE, null, ex);
+            }
             System.out.println(e);
         }
 
