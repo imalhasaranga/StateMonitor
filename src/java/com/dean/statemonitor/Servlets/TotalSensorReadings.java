@@ -18,7 +18,9 @@ public class TotalSensorReadings {
     private String reading;
     private String reading_datime;
     private String color;
+    private String readingTime;
     private boolean normal;
+    private boolean inDanger;
 
     public ArrayList<TotalSensorReadings> getLatestReadings(int Sentypeid) {
         ArrayList<TotalSensorReadings> redng = new ArrayList<TotalSensorReadings>();
@@ -42,14 +44,20 @@ public class TotalSensorReadings {
                 toread.setReading_id(readings.getInt("reading_id"));
                 toread.setReading(readings.getString("reading"));
                 toread.setReading_datime(readings.getString("reading_time"));
-                if((Integer.parseInt(toread.getSen_max()) > Integer.parseInt(toread.getReading())) && (Integer.parseInt(toread.getReading()) > Integer.parseInt(toread.getSen_min()))){
-                toread.setColor("green");
-                toread.setNormal(true);
-                }else{
-                toread.setColor("red");
-                toread.setNormal(false);
+                if ((Integer.parseInt(toread.getSen_max()) > Integer.parseInt(toread.getReading())) && (Integer.parseInt(toread.getReading()) > Integer.parseInt(toread.getSen_min()))) {
+
+                    if (readings.getDouble("minUpper") < readings.getDouble("reading") && readings.getDouble("reading") < readings.getDouble("maxLower")) {
+                        toread.setColor("green");
+                    } else {
+                        toread.setColor("#FC6");
+                    }
+
+                    toread.setNormal(true);
+                } else {
+                    toread.setColor("red");
+                    toread.setNormal(false);
                 }
-                
+
                 redng.add(toread);
             }
 
@@ -57,8 +65,29 @@ public class TotalSensorReadings {
         }
         return redng;
     }
-    
-    
+
+    public ArrayList<TotalSensorReadings> getLatestReadingsCharts(String sensorID) {
+        ArrayList<TotalSensorReadings> redng = new ArrayList<TotalSensorReadings>();
+        try {
+
+
+
+            ResultSet readings = DB.getData("SELECT*,SUBSTRING(reading_time,11,16) as timer1 FROM reading WHERE sensor_id = '" + sensorID + "' ");
+            while (readings.next()) {
+                TotalSensorReadings toread = new TotalSensorReadings();
+                toread.setReading_id(readings.getInt("reading_id"));
+                toread.setSensor_id(readings.getInt("sensor_id"));
+                toread.setReading(readings.getString("reading"));
+                toread.setReading_datime(readings.getString("reading_time"));
+                toread.setReadingTime(readings.getString("timer1"));
+                redng.add(toread);
+            }
+
+        } catch (Exception e) {
+        }
+        return redng;
+    }
+
     public ArrayList<TotalSensorReadings> getLatestOverReadings() {
         ArrayList<TotalSensorReadings> redng = new ArrayList<TotalSensorReadings>();
         try {
@@ -67,7 +96,7 @@ public class TotalSensorReadings {
             rs.first();
             String maxtime = rs.getString("mtime").substring(0, 16);
 
-            ResultSet readings = DB.getData("SELECT* FROM allsenreding WHERE SUBSTRING(reading_time,1, 16)  = '" + maxtime + "' AND ( maximum <= reading || reading <= minimum) ");
+            ResultSet readings = DB.getData("SELECT* FROM allsenreding WHERE SUBSTRING(reading_time,1, 16)  = '" + maxtime + "' AND (maxLower  <= reading || reading <=minUpper ) ");
             while (readings.next()) {
                 TotalSensorReadings toread = new TotalSensorReadings();
                 toread.setSensor_id(readings.getInt("sensor_id"));
@@ -81,8 +110,12 @@ public class TotalSensorReadings {
                 toread.setReading_id(readings.getInt("reading_id"));
                 toread.setReading(readings.getString("reading"));
                 toread.setReading_datime(readings.getString("reading_time"));
-                
-                
+                if ((readings.getDouble("minimum") < readings.getDouble("reading")) && (readings.getDouble("reading") < readings.getDouble("maximum"))) {
+                    toread.setInDanger(false);
+                } else {
+                    toread.setInDanger(true);
+                }
+
                 redng.add(toread);
             }
 
@@ -90,7 +123,7 @@ public class TotalSensorReadings {
         }
         return redng;
     }
-    
+
     public ArrayList<TotalSensorReadings> getLatestReadings() {
         ArrayList<TotalSensorReadings> redng = new ArrayList<TotalSensorReadings>();
         try {
@@ -113,14 +146,14 @@ public class TotalSensorReadings {
                 toread.setReading_id(readings.getInt("reading_id"));
                 toread.setReading(readings.getString("reading"));
                 toread.setReading_datime(readings.getString("reading_time"));
-                if((Integer.parseInt(toread.getSen_max()) > Integer.parseInt(toread.getReading())) && (Integer.parseInt(toread.getReading()) > Integer.parseInt(toread.getSen_min()))){
-                toread.setColor("green");
-                toread.setNormal(true);
-                }else{
-                toread.setColor("red");
-                toread.setNormal(false);
+                if ((Integer.parseInt(toread.getSen_max()) > Integer.parseInt(toread.getReading())) && (Integer.parseInt(toread.getReading()) > Integer.parseInt(toread.getSen_min()))) {
+                    toread.setColor("green");
+                    toread.setNormal(true);
+                } else {
+                    toread.setColor("red");
+                    toread.setNormal(false);
                 }
-                
+
                 redng.add(toread);
             }
 
@@ -309,5 +342,33 @@ public class TotalSensorReadings {
      */
     public void setNormal(boolean normal) {
         this.normal = normal;
+    }
+
+    /**
+     * @return the inDanger
+     */
+    public boolean isInDanger() {
+        return inDanger;
+    }
+
+    /**
+     * @param inDanger the inDanger to set
+     */
+    public void setInDanger(boolean inDanger) {
+        this.inDanger = inDanger;
+    }
+
+    /**
+     * @return the readingTime
+     */
+    public String getReadingTime() {
+        return readingTime;
+    }
+
+    /**
+     * @param readingTime the readingTime to set
+     */
+    public void setReadingTime(String readingTime) {
+        this.readingTime = readingTime;
     }
 }

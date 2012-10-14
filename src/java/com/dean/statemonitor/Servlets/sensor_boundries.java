@@ -39,6 +39,8 @@ public class sensor_boundries extends HttpServlet {
             Sensor sensor = new Sensor();
             sensor.setMinimum(request.getParameter("min"));
             sensor.setMaximum(request.getParameter("max"));
+             sensor.setMinupper(request.getParameter("minup"));
+            sensor.setMaxLower(request.getParameter("maxlow"));
             sensor.setSensor_id(Integer.parseInt(request.getParameter("id")));
             sensor.updateSensor();
             response.sendRedirect("sensormgt.jsp");

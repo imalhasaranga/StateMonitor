@@ -21,7 +21,32 @@
         <title>TATA</title>
 
         <link href="styles/sensormore.css" rel="stylesheet" type="text/css"/>
-
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+        <script src="scripts/jquery-1.8.2.min.js" ></script>
+        <script type="text/javascript">
+            google.load("visualization", "1", {packages:["corechart"]});
+            //google.setOnLoadCallback(drawChart);
+            function drawChart(serial,description,senid) {
+                document.getElementById("charthed1").innerHTML = " Chart for "+description+" Sensor (Serial No: "+serial+")";
+                var atag = document.getElementById("chartmore");
+                atag.href = "#?"+senid;
+                atag.innerHTML ="More Detailed Report";
+                $.ajax({url:"LoadCharts?ido="+senid,success:function(result){  
+                
+                var obj = jQuery.parseJSON(result);
+                if(obj.lenght >1){
+                    document.getElementById("charthed2").innerHTML = obj[0][0];
+                }
+                var data = google.visualization.arrayToDataTable(obj);
+                var options = {
+                    title: ''
+                };
+                var chart = new google.visualization.LineChart(document.getElementById('chartspace'));
+                chart.draw(data, options);
+                }});
+            }
+          
+        </script>
     </head>
 
     <body>
@@ -52,8 +77,8 @@
                         <tr>
                             <td width="80"><%=read.getSen_serial()%></td>
                             <td width="180"><%=read.getSen_description()%></td>
-                            <td width="40" bgcolor="<%=read.getColor() %>" align="center" style="color:#FFF"><%=read.getReading()%></td>
-                            <td width="100" align="center"><a href="#?<%=read.getSensor_id()%>" id="viewchart2"><span id="viewchart">View Chart</span></a></td>
+                            <td width="40" bgcolor="<%=read.getColor()%>" align="center" style="color:#FFF"><%=read.getReading()%></td>
+                            <td width="100" align="center"><a href="#" id="viewchart2" onclick="drawChart('<%=read.getSen_serial()%>','<%=read.getSen_description()%>','<%=read.getSensor_id()%>')"><span id="viewchart">View Chart</span></a></td>
                         </tr>
                         <%
 
@@ -66,7 +91,9 @@
 
                 <div id="chart" align="center">
                     <div id="chartheading" align="center">
-                        Chart for Main Board2 Sensor (Serial No: A115CD300-55)
+                        <span id="charthed1"></span>
+                        <br/>
+                        <span id="charthed2"></span>
                     </div>
 
                     <div id="chartspace" align="center">
@@ -74,7 +101,7 @@
                     </div>
 
 
-                    <a href="#" id="chartmore">More Detailed Report</a>
+                    <a href="#" id="chartmore"></a>
 
 
                 </div>

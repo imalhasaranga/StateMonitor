@@ -64,7 +64,7 @@
                 </form>
 
                 <div id="tbl3">
-                    <table id="tblsensors3" cellpadding="0" cellspacing="0" border="1" style="border-color:lightskyblue" >
+                    <table id="tblsensors2" cellpadding="0" cellspacing="0" >
                         <tr>
                             <th>I.Id</th>
                             <th>I. Name</th>

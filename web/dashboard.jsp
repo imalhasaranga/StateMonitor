@@ -14,11 +14,18 @@
         <script src="scripts/jquery-1.8.2.min.js" ></script>
         <script type="text/javascript">
             var idss = new Array();
+            var time1;
             $(document).ready(function() {
                 
                 jquerrequest();
                 setInterval(function(){jquerrequest()},<%=System.getProperty("ReadingFreqInClientSide")%>); 
             });
+            window.onload = function() {
+                if(!window.location.hash) {
+                    window.location = window.location + '#loaded';
+                    window.location.reload();
+                }
+            }
             
             function jquerrequest(){
                 var prob = "Problem in: ";
@@ -36,6 +43,8 @@
                        
                         var obj = jQuery.parseJSON(result);
                         var flag = 0;
+                        var dg1 = 0;
+                        var nodg = 0;
                         for(var i = 0; i < obj.length; i++){
                             flag = 1;
                             var divel =  document.getElementById("d"+obj[i].SenTypeID);
@@ -43,7 +52,7 @@
                            
                             divel.style.backgroundColor ="#C30";
                             divel.style.color = "white";                            
-                           // link.href = "sensorproblem.html";
+                            // link.href = "sensorproblem.html";
                             if(prob != ""){
                                 divel.innerHTML = "";
                                 divel.innerHTML = prob+divel.innerHTML+obj[i].SenName;
@@ -51,10 +60,20 @@
                             }else{                                
                                 divel.innerHTML = divel.innerHTML+","+obj[i].SenName;
                             }
-                           
+                           if(obj[i].dg == 1){
+                               dg1 = 1;
+                           }else{
+                               
+                               ++nodg;
+                           }
                         }
                         
-                        if(flag == 1){
+                        if((nodg == obj.length) && (nodg != 0)){
+                            
+                            divel.style.backgroundColor ="#FC6";
+                        }
+                        
+                        if(flag == 1 && dg1 ==1){
                             document.getElementById("mp3").play();
                         }else{
                             document.getElementById("mp3").pause();
@@ -102,19 +121,7 @@
                     }
                 %>
 
-
-
-
-
-
-
-
-
             </div>
-
-
-
-
         </div>
         <audio src="files/al1.wav" id="mp3" loop="loop" preload="auto" ></audio>
     </body>

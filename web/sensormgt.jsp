@@ -18,11 +18,13 @@
         <link href="styles/message.css" rel="stylesheet" type="text/css"/>
         <script type="text/javascript">
             
-            function move(id,minred,maxread){
+            function move(id,minred,maxread,id1){
               
                 minred = document.getElementById(minred).value;
                 maxread = document.getElementById(maxread).value;
-                window.location = "sensorBoundary?id="+id+"&min="+minred+"&max="+maxread;
+                minredup = document.getElementById("minreadup"+id1).value;
+                maxreadlow = document.getElementById("maxreadlow"+id1).value;
+                window.location = "sensorBoundary?id="+id+"&min="+minred+"&max="+maxread+"&minup="+minredup+"&maxlow="+maxreadlow;
               
             }
             
@@ -72,13 +74,15 @@
                 </form>
 
                 <div id="tbl2">
-                    <table width="100" cellpadding="0" cellspacing="0" id="tblsensors2">
+                    <table width="100%" cellpadding="0" cellspacing="0" id="tblsensors2">
                         <tr>
                             <th>S.Id</th>
                             <th>S.Serial</th>
                             <th>S.Type</th>
                             <th>Sensor Name</th>
                             <th>Min Reading</th>
+                            <th>Min up-Reading</th>
+                            <th>Max low-Reading</th>
                             <th>Max Reading</th>
                             <th></th>
                             <th></th>
@@ -94,21 +98,23 @@
                                 Sensor_type senrtyp = new Sensor_type().getSensorTypes(senro.getSensor_type());
                         %>
                         <tr>
-                            <td width="36"><%=senro.getSensor_id() %></td>
-                            <td width="63"><%=senro.getSensor_serial()%></td>
-                            <td width="60"><%=senrtyp.getSensor_type()%></td>
-                            <td width="124"><%=senro.getDescription()%></td>
-                            <td width="107"><input type="text" name="minread" style="width:90px;" id="minread<%=ic %>" value="<%=senro.getMinimum()%>"/></td>
-                            <td width="97"><input type="text" name="maxread" style="width:90px;" id="maxread<%=ic %>" value="<%=senro.getMaximum()%>"/></td>
-                            <td width="48">&nbsp;&nbsp;<a href="DeActivatorDeletor?delid=4&senid=<%=senro.getSensor_id() %>"><%=senro.getActiveState() %></a></td>
-                            <td width="63">&nbsp;&nbsp;&nbsp;<a href="#" onclick="move('<%=senro.getSensor_id()%>','minread<%=ic %>','maxread<%=ic %>')">Update</a></td>
+                            <td width="52"><%=senro.getSensor_id() %></td>
+                            <td width="83"><%=senro.getSensor_serial()%></td>
+                            <td width="84"><%=senrtyp.getSensor_type()%></td>
+                            <td width="192"><%=senro.getDescription()%></td>
+                            <td width="99"><input type="text" name="minread" style="width:90px;" id="minread<%=ic %>" value="<%=senro.getMinimum()%>"/></td>
+                             <td width="95"><input type="text" name="minreadup" style="width:90px;" id="minreadup<%=ic %>" value="<%=senro.getMinupper() %>"/></td>
+                             <td width="101"><input type="text" name="maxreadlow" style="width:90px;" id="maxreadlow<%=ic %>" value="<%=senro.getMaxLower() %>"/></td>
+                            <td width="95"><input type="text" name="maxread" style="width:90px;" id="maxread<%=ic %>" value="<%=senro.getMaximum()%>"/></td>
+                            <td width="56">&nbsp;&nbsp;<a href="DeActivatorDeletor?delid=4&senid=<%=senro.getSensor_id() %>"><%=senro.getActiveState() %></a></td>
+                            <td width="81">&nbsp;&nbsp;&nbsp;<a href="#" onclick="move('<%=senro.getSensor_id()%>','minread<%=ic %>','maxread<%=ic %>','<%=ic %>')">Update</a></td>
                             <!-- <td width="100" align="center"><a href="javascript:void(0)" id="viewchart2" onclick = "document.getElementById('light1').style.display='block';document.getElementById('fade').style.display='block'"><span id="viewchart">Active</span></a></td> -->
                         </tr>
                         <%  }%>
                     </table>
 
                     <div id="light1" class="white_box" align="center">		
-                    <p>Sure to Deactivate this Sensor Type?</p>
+        <p>Sure to Deactivate this Sensor Type?</p>
                         <input type="submit" name="yes" value="Yes" id="btn_login"  class="btn"/>
                         <input type="submit" name="no" value="No" id="btn_login"  class="btn"/>
                     </div>

@@ -16,6 +16,8 @@ public class Sensor {
     private String description;
     private String minimum;
     private String maximum;
+    private String minupper;
+    private String maxLower;
     private String ActiveState;
     
 
@@ -23,7 +25,7 @@ public class Sensor {
         ArrayList<Sensor> data = new ArrayList<Sensor>();
 
         try {
-            ResultSet rs = DB.getData("SELECT 	is_active,minimum,maximum,sensor_id, sensor_serial, sensor_type, description FROM sensor");
+            ResultSet rs = DB.getData("SELECT 	is_active,minUpper,maxLower,minimum,maximum,sensor_id, sensor_serial, sensor_type, description FROM sensor");
             while (rs.next()) {
                 Sensor sensortype = new Sensor();
                 sensortype.setDescription(rs.getString("description"));
@@ -32,6 +34,8 @@ public class Sensor {
                 sensortype.setSensor_id(rs.getInt("sensor_id"));
                 sensortype.setMinimum(rs.getString("minimum"));
                 sensortype.setMaximum(rs.getString("maximum"));
+                sensortype.setMinupper(rs.getString("minUpper"));
+                sensortype.setMaxLower(rs.getString("maxLower"));
                 sensortype.setActiveState(rs.getInt("is_active")==1?"Active":"InActive");
                 data.add(sensortype);
             }
@@ -132,7 +136,7 @@ public class Sensor {
     
         try {
             
-            DB.setData("UPDATE sensor SET minimum = '"+getMinimum()+"',maximum='"+getMaximum()+"' WHERE sensor_id = '"+getSensor_id()+"'");
+            DB.setData("UPDATE sensor SET minimum = '"+getMinimum()+"',maximum='"+getMaximum()+"',minUpper='"+getMinupper()+"',maxLower='"+getMaxLower()+"' WHERE sensor_id = '"+getSensor_id()+"'");
             
         } catch (Exception e) {
             System.out.println(e);
@@ -236,5 +240,33 @@ public class Sensor {
      */
     public void setActiveState(String ActiveState) {
         this.ActiveState = ActiveState;
+    }
+
+    /**
+     * @return the minupper
+     */
+    public String getMinupper() {
+        return minupper;
+    }
+
+    /**
+     * @param minupper the minupper to set
+     */
+    public void setMinupper(String minupper) {
+        this.minupper = minupper;
+    }
+
+    /**
+     * @return the maxLower
+     */
+    public String getMaxLower() {
+        return maxLower;
+    }
+
+    /**
+     * @param maxLower the maxLower to set
+     */
+    public void setMaxLower(String maxLower) {
+        this.maxLower = maxLower;
     }
 }
