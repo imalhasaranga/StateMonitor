@@ -21,50 +21,32 @@
         <title>TATA</title>
 
         <link href="styles/sensormore.css" rel="stylesheet" type="text/css"/>
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
         <script src="scripts/jquery-1.8.2.min.js" ></script>
-        <script src="scripts/canvasChart.js" type="text/javascript"></script>
-
-
-
         <script type="text/javascript">
-
-
+            google.load("visualization", "1", {packages:["corechart"]});
+            //google.setOnLoadCallback(drawChart);
             function drawChart(serial,description,senid) {
                 document.getElementById("charthed1").innerHTML = " Chart for "+description+" Sensor (Serial No: "+serial+")";
-                var atag = document.getElementById("chartmoreimg");
+                var atag = document.getElementById("chartmore");
                 atag.href = "#?"+senid;
-                
+                atag.innerHTML ="More Detailed Report";
                 $.ajax({url:"LoadCharts?ido="+senid,success:function(result){  
                 
-                        var obj = jQuery.parseJSON(result);
-                        if(obj.lenght >1){
-                            document.getElementById("charthed2").innerHTML = obj[0][0];
-                        }
-                       
-                                  
-                        document.applet.show(result);
-                        
-                        /*
-                        var dataDef = { title: "",
-                            xLabel: '', 
-                            yLabel: '',
-                            labelFont: '0pt Arial', 
-                            dataPointFont: '9pt Arial',
-                            renderTypes: [CanvasChart.renderType.lines, CanvasChart.renderType.points],
-                            dataPoints: obj
-                        };
-                        
-                        
-                        CanvasChart.render('canvas', dataDef);
-                        */
-                        
-                    }});
+                var obj = jQuery.parseJSON(result);
+                if(obj.lenght >1){
+                    document.getElementById("charthed2").innerHTML = obj[0][0];
+                }
+                var data = google.visualization.arrayToDataTable(obj);
+                var options = {
+                    title: ''
+                };
+                var chart = new google.visualization.LineChart(document.getElementById('chartspace'));
+                chart.draw(data, options);
+                }});
             }
-
+          
         </script>
-
-
-
     </head>
 
     <body>
@@ -99,6 +81,7 @@
                             <td width="100" align="center"><a href="#" id="viewchart2" onclick="drawChart('<%=read.getSen_serial()%>','<%=read.getSen_description()%>','<%=read.getSensor_id()%>')"><span id="viewchart">View Chart</span></a></td>
                         </tr>
                         <%
+
                             }
                         %>
                     </table>
@@ -114,17 +97,14 @@
                     </div>
 
                     <div id="chartspace" align="center">
-                        <!--<canvas id="canvas" width="500" height="425"></canvas> -->
-                        <APPLET CODE=javaapplet.XYSplineRenderer ARCHIVE="Applet/javaApplet.jar" ID ="applet" WIDTH="100%" HEIGHT="101%">
-                            Error Loading Applet please Install java !!!
-                        </APPLET>
-                        
+
                     </div>
 
 
-                </div>
+                    <a href="#" id="chartmore"></a>
 
-                <a href="#"><img src="images/chart_more.png" border="0" id="chartmoreimg"></img></a>
+
+                </div>
 
 
 

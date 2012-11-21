@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 /**
  *
@@ -36,17 +37,14 @@ public class LoadCharts extends HttpServlet {
         Iterator i1 = new TotalSensorReadings().getLatestReadingsCharts(request.getParameter("ido")).iterator();
 
         JSONArray reding = new JSONArray();
-        JSONArray reding1 = new JSONArray();
-        reding1.add("Time");
-        reding1.add("Sensor Reading");
-        
-        reding.add(reding1);
+       
 
         while (i1.hasNext()) {
             TotalSensorReadings red = (TotalSensorReadings) i1.next();
-            JSONArray re = new JSONArray();
-            re.add(red.getReadingTime());
-            re.add(Integer.parseInt(red.getReading()));
+            JSONObject re = new JSONObject();
+            re.put("x", red.getReadingTime());
+            re.put("y", Integer.parseInt(red.getReading()));
+            
            
             reding.add(re);
 
@@ -73,6 +71,20 @@ public class LoadCharts extends HttpServlet {
 //        } catch (Exception e) {
 //            System.out.println(e);
 //        }
+       
+       
+//       [{ x: '1790', y: 3.9 }, 
+//                                { x: '1810', y: 7.2 }, 
+//                                { x: '1830', y: 12.8 }, 
+//                                { x: '1850', y: 23.1 },
+//                                { x: '1870', y: 36.5 },
+//                                { x: '1890', y: 62.9 }, 
+//                                { x: '1910', y: 92.2 },
+//                                { x: '1930', y: 123.2 },
+//                                { x: '1950', y: 151.3 }, 
+//                                { x: '1970', y: 203.2 },
+//                                { x: '1990', y: 248.7 }, 
+//                                { x: '2010', y: 308.7}]
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

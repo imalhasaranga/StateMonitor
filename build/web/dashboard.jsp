@@ -28,7 +28,7 @@
             }
             
             function jquerrequest(){
-                var prob = "Problem in: ";
+                var prob = ": Increasing";
                 $.ajax({url:"ReadingMonitor?ido=1",success:function(result){                  
                         for(var i = 0; i < idss.length; i++){
                             var divel = document.getElementById("d"+idss[i]);
@@ -36,7 +36,7 @@
                             
                             divel.style.backgroundColor ="#d1fc86";
                             divel.style.color = "#666666";
-                            divel.innerHTML = "";
+                            divel.innerHTML = "<br><br><br><br><br><img src='images/sensor_ok.png' border='0'></img>";
                             aeli.href = "sensormore.jsp?sentyid="+idss[i];
                             
                         }
@@ -49,17 +49,22 @@
                             flag = 1;
                             var divel =  document.getElementById("d"+obj[i].SenTypeID);
                             //var link =  document.getElementById("a"+obj[i].SenTypeID); 
-                           
+                            
                             divel.style.backgroundColor ="#C30";
-                            divel.style.color = "white";                            
+                            divel.style.color = "white"; 
+                            divel.style.fontFamily = "arial";
+                            divel.style.fontSize = "12px";
+                            divel.style.fontWeight = "normal";
                             // link.href = "sensorproblem.html";
                             if(prob != ""){
                                 divel.innerHTML = "";
-                                divel.innerHTML = prob+divel.innerHTML+obj[i].SenName;
+                                divel.innerHTML = divel.innerHTML + obj[i].SenName + prob;
+                                //divel.innerHTML = divel.innerHTML + "<br><br><br><img src='images/sensor_crt.png' border='0'></img>";
                                 prob = "";
-                            }else{                                
-                                divel.innerHTML = divel.innerHTML+","+obj[i].SenName;
+                            }else{
+                                divel.innerHTML = divel.innerHTML + "<br>" + obj[i].SenName + ": Increasing";
                             }
+                            
                            if(obj[i].dg == 1){
                                dg1 = 1;
                            }else{
@@ -67,7 +72,7 @@
                                ++nodg;
                            }
                         }
-                        
+                        divel.innerHTML = divel.innerHTML + "<br><br><img src='images/sensor_crt.png' border='0'></img>";
                         if((nodg == obj.length) && (nodg != 0)){
                             
                             divel.style.backgroundColor ="#FC6";
@@ -93,7 +98,9 @@
         <div id="container" align="center">
 
             <div id="content" align="left">
-
+                
+                <div id="dbheading"></div>
+                
                 <%
                     Sensor_type sentype = new Sensor_type();
                     Sensor sen1 = new Sensor();
@@ -102,18 +109,20 @@
                     while (i.hasNext()) {
                         sentype = (Sensor_type) i.next();
                 %>
-
+                 
                 <div id="sensor">
                     <div id="sensor_heading"  align="center">
                         <%=sentype.getSensor_type()%>
                     </div>
                     <a href="sensormore.jsp?sentyid=<%=sentype.getSensor_type_id()%>" id="a<%=sentype.getSensor_type_id()%>" style="font-family: Verdana; font-size: 9px; font-weight:bold" target="_blank">
-                        <div id="d<%=sentype.getSensor_type_id()%>" class="sensor_middle"  align="center"  style="padding-top: 10px"></div></a>
+                        <div id="d<%=sentype.getSensor_type_id()%>" class="sensor_middle"  align="center"  style="padding-top: 10px">
+                        </div></a>
                     <div id="sensor_bottom" align="center">
-                        All Sensors: <%=sen1.SensorCount(sentype.getSensor_type_id())%>
+                        No. of Sensors: <%=sen1.SensorCount(sentype.getSensor_type_id())%>
 
                     </div>
                 </div>
+                
                 <script type="text/javascript">               
                     idss[<%=(cou1++)%>] = '<%=sentype.getSensor_type_id()%>';  
                 </script>

@@ -33,7 +33,7 @@
                 <div id="title">User Profile Management...</div>
 
                 <form action="Userserv" method="post">
-                    <table width="800"  id="tbl_login">
+                    <table width="800"  id="tbl_login_user">
                         <tr>
                             <td width="86">Name</td>
                             <td width="130"><input type="text" name="name" id="txt_username"  class="userenter"/></td>
@@ -45,13 +45,31 @@
                             <td>&nbsp;</td>
                         </tr>
                         <tr>
-                            <td>Position</td>
+                            <td>Designation</td>
                             <td><input type="text" name="position" id="txt_username"  class="userenter"/></td>
+                        </tr>
+                        <tr>
+                            <td>User Type</td>
                             <td>
-                                <select name="typeu">
-                                    <option value="1">Admin</option>
-                                    <option value="2" selected="selected">User</option>
+                                <select name="typeu" id="txt_username"  class="userselect">
+                                    <option value="0">Select Type</option>
+                                    <option value="1">Administrator</option>
+                                    <option value="2">Super User</option>
+                                    <option value="3">Normal User</option>
                                 </select>
+                                
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>User Level</td>
+                            <td>
+                                <select name="typeu" id="txt_username"  class="userselect">
+                                    <option value="0">Select Level</option>
+                                    <option value="1">Level 1</option>
+                                    <option value="2">Level 2</option>
+                                    <option value="3">Level 3</option>
+                                </select>
+                                
                             </td>
                         </tr>
                         <tr>
@@ -76,7 +94,33 @@
                         </tr>
                     </table>
                 </form>
-
+                
+                <div id="userarea" align="center">
+                    Responsibilities & Privileges<br></br>
+                    
+                    <table>
+                        <tr>
+                            <td><input type="checkbox" name="option1" value="Milk"/> Add New Users</td>
+                            <td><input type="checkbox" name="option1" value="Milk"/> Change User Privileges</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" name="option1" value="Milk"/> Add New Sensors</td>
+                            <td><input type="checkbox" name="option1" value="Milk"/> Sensor Manage</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" name="option1" value="Milk"/> Stop Alarms</td>
+                            <td><input type="checkbox" name="option1" value="Milk"/> Acknowledge</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" name="option1" value="Milk"/> Problem Solved Report</td>
+                            <td><input type="checkbox" name="option1" value="Milk"/> View Incident History</td>
+                        </tr>
+                    </table>
+                    
+                    
+                    
+                </div>
+                
                 <div id="tbl2">
                     <table id="tblsensors2" cellpadding="0" cellspacing="0">
                         <tr>

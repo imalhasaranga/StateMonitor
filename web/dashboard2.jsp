@@ -1,8 +1,4 @@
-<%@page import="java.util.Iterator"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@include file="includes/topheader.jsp" %>
-<%@page import="com.dean.statemonitor.Model.*" %>
-<%@page import="java.util.*" %>
+
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -98,40 +94,84 @@
         <div id="container" align="center">
 
             <div id="content" align="left">
-                
                 <div id="dbheading"></div>
-                
-                <%
-                    Sensor_type sentype = new Sensor_type();
-                    Sensor sen1 = new Sensor();
-                    Iterator i = sentype.getAllSensorTypes(Sensor_type.ACTIVE).iterator();
-                    int cou1 = 0;
-                    while (i.hasNext()) {
-                        sentype = (Sensor_type) i.next();
-                %>
-                 
                 <div id="sensor">
                     <div id="sensor_heading"  align="center">
-                        <%=sentype.getSensor_type()%>
+                        Temp
                     </div>
-                    <a href="sensormore.jsp?sentyid=<%=sentype.getSensor_type_id()%>" id="a<%=sentype.getSensor_type_id()%>" style="font-family: Verdana; font-size: 9px; font-weight:bold" target="_blank">
-                        <div id="d<%=sentype.getSensor_type_id()%>" class="sensor_middle"  align="center"  style="padding-top: 10px">
+                    <a href="sensormore.jsp?sentyid=" id="" style="font-family: Verdana; font-size: 9px; font-weight:bold" target="_blank">
+                        <div id="" class="sensor_middle"  align="center"  style="padding-top: 10px">
                         </div></a>
                     <div id="sensor_bottom" align="center">
-                        No. of Sensors: <%=sen1.SensorCount(sentype.getSensor_type_id())%>
+                        No. of Sensors: 
 
                     </div>
                 </div>
                 
-                <script type="text/javascript">               
-                    idss[<%=(cou1++)%>] = '<%=sentype.getSensor_type_id()%>';  
-                </script>
-                <%
-                    }
-                %>
+                <div id="sensor">
+                    <div id="sensor_heading"  align="center">
+                        Temp
+                    </div>
+                    <a href="sensormore.jsp?sentyid=" id="" style="font-family: Verdana; font-size: 9px; font-weight:bold" target="_blank">
+                        <div id="" class="sensor_middle"  align="center"  style="padding-top: 10px">
+                        </div></a>
+                    <div id="sensor_bottom" align="center">
+                        No. of Sensors: 
+
+                    </div>
+                </div>
+                <div id="sensor">
+                    <div id="sensor_heading"  align="center">
+                        Temp
+                    </div>
+                    <a href="sensormore.jsp?sentyid=" id="" style="font-family: Verdana; font-size: 9px; font-weight:bold" target="_blank">
+                        <div id="" class="sensor_middle"  align="center"  style="padding-top: 10px">
+                        </div></a>
+                    <div id="sensor_bottom" align="center">
+                        No. of Sensors: 
+
+                    </div>
+                </div>
+                <div id="sensor">
+                    <div id="sensor_heading"  align="center">
+                        Temp
+                    </div>
+                    <a href="sensormore.jsp?sentyid=" id="" style="font-family: Verdana; font-size: 9px; font-weight:bold" target="_blank">
+                        <div id="" class="sensor_middle"  align="center"  style="padding-top: 10px">
+                        </div></a>
+                    <div id="sensor_bottom" align="center">
+                        No. of Sensors: 
+
+                    </div>
+                </div>
+                <div id="sensor">
+                    <div id="sensor_heading"  align="center">
+                        Temp
+                    </div>
+                    <a href="sensormore.jsp?sentyid=" id="" style="font-family: Verdana; font-size: 9px; font-weight:bold" target="_blank">
+                        <div id="" class="sensor_middle"  align="center"  style="padding-top: 10px">
+                        </div></a>
+                    <div id="sensor_bottom" align="center">
+                        No. of Sensors: 
+
+                    </div>
+                </div>
+                
+                <div id="sensor">
+                    <div id="sensor_heading"  align="center">
+                        Temp
+                    </div>
+                    <a href="sensormore.jsp?sentyid=" id="" style="font-family: Verdana; font-size: 9px; font-weight:bold" target="_blank">
+                        <div id="" class="sensor_middle"  align="center"  style="padding-top: 10px">
+                        </div></a>
+                    <div id="sensor_bottom" align="center">
+                        No. of Sensors: 
+
+                    </div>
+                </div>
 
             </div>
         </div>
-        <audio src="files/al1.wav" id="mp3" loop="loop" preload="auto" ></audio>
+        
     </body>
 </html>

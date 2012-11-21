@@ -66,15 +66,16 @@ body{
 }
 #content{
 	width:1000px;
-	max-width:1000px;
-	min-width:1000px;
 	height:auto;
-	background:#CCCCCC;
+}
+#dbheading{
+    width: 100px;
+    height: 10px;
 }
 #sensor{
 	width:205px;
 	height:185px;
-	float:left;
+	float: left;
 	background:#484747;
 	border-radius: 10px;
 	margin-left:35px;
@@ -94,6 +95,7 @@ body{
 	width:205px;
 	height:120px;
 	background:#d1fc86;
+        
 }
 .sensor_middle:hover{
 	width:203px;
@@ -132,83 +134,8 @@ body{
 	background:#CCCCCC;
 	float:left;
 }
-.sensor_right{
-	width:400px;
-	height:40px;
-	padding-top:30px;
-	background:#d1fc86;
-	float:left;
-	font-family:Arial, Helvetica, sans-serif;
-	font-size:12px;
-	font-weight:bold;
-	color:#666666;
-}
-.sensor_right_pro{
-	width:400px;
-	height:40px;
-	padding-top:30px;
-	background:#fc6488;
-	float:left;
-	font-family:Arial, Helvetica, sans-serif;
-	font-size:12px;
-	font-weight:bold;
-	color:#FFFFFF;
-}
-.sensor_name{
-	width:100px;
-	height:25px;
-	padding-top:10px;
-	background:#484747;
-	font-family:Arial, Helvetica, sans-serif;
-	font-size:12px;
-	font-weight:bold;
-	color:#f3f0f0;
-}
-.sensor_name:hover{
-	width:100px;
-	height:25px;
-	padding-top:10px;
-	background:#f3f0f0;
-	font-family:Arial, Helvetica, sans-serif;
-	font-size:12px;
-	font-weight:bold;
-	color:#484747;
-	text-decoration:none;
-}
-.sensor_nums{
-	width:100px;
-	height:25px;
-	padding-top:10px;
-	background:#FFFFFF;
-	font-family:"Times New Roman", Times, serif;
-	font-size:12px;
-	font-weight:bold;
-	color:#666666;
-}
-.sensor_right:hover{
-	width:398px;
-	height:38px;
-	padding-top:30px;
-	background:#d1fc86;
-	float:left;
-	font-family:Arial, Helvetica, sans-serif;
-	font-size:12px;
-	font-weight:bold;
-	color:#FFFFFF;
-	border: 1px solid #000000;
-}
-.sensor_right_pro:hover{
-	width:396px;
-	height:36px;
-	padding-top:30px;
-	background:#fc6488;
-	float:left;
-	font-family:Arial, Helvetica, sans-serif;
-	font-size:12px;
-	font-weight:bold;
-	color:#333333;
-	border: 2px solid #FF0000;
-}
+
+
 /* Link Styles */
 
 .mainlinks{
